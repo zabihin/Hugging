@@ -3,7 +3,7 @@ from utils import get_data, diseases, metrics_table
 import pandas as pd 
 import io
 import json
-from openai import OpenAI
+#from openai import OpenAI
 import tensorflow as tf
 from transformers import TFAutoModelForSequenceClassification, AutoTokenizer
 
@@ -29,7 +29,7 @@ def get_data(file:str):
     return data
 
 
-def call_gpt3(api,prompt:str):
+'''def call_gpt3(api,prompt:str):
     client = OpenAI(api_key=api)
 
     response = client.chat.completions.create(
@@ -43,7 +43,7 @@ def call_gpt3(api,prompt:str):
 
     return generated_text
 
-
+'''
 # Define functions
 def get_predictions(text):
     inputs = tokenizer(text, return_tensors="tf", truncation=True, max_length=512)
@@ -106,7 +106,7 @@ def main():
             # Condition to display only high probability deseases
             if probability > 0.6:
                 st.success(f"Based on your symptoms, there's a {100 * probability:.2f}% probability that you might have {predicted_label}.")
-
+                '''
                 if api:
      
                     # Try using the provided API key to call GPT-3
@@ -125,6 +125,7 @@ def main():
                         st.warning("Unable to retrieve information using the provided API key. Please try another API key if available.")
                 else:
                     st.write('If you want to know more, please enter your api key')
+                    '''
             else:
                 st.warning("The symptoms you've described do not strongly indicate any of the 22 diseases in our database with a high probability. It's recommended to consult a healthcare professional for a more accurate diagnosis.")
                 # Expander to show the list of diseases
