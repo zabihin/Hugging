@@ -1,6 +1,5 @@
 import streamlit as st
 from utils import get_data, diseases, metrics_table
-from transformers import pipeline
 import pandas as pd 
 import io
 import json
